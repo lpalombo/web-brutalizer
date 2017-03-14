@@ -9,23 +9,57 @@
 
         <link rel="stylesheet" href="css/normalize.min.css">
         <link rel="stylesheet" href="css/style.css">
-
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">
+        
+        <link rel="stylesheet" href="css/themes/default.css">
+        <link rel="stylesheet" href="css/medium-editor.css">
+        
+        <link rel="stylesheet" href="js/medium-editor/dist/css/medium-editor.min.css">
+        <link rel="stylesheet" href="js/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin.min.css">
+        
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-        <script src="js/vendor/mmd.min.js"></script>
-        <script src="js/vendor/packery.pkgd.min.js"></script>
     </head>
     <body>
-        <div class="inner">
-            <textarea id="input"></textarea>
-            <a href="result.html" onClick="setSessionVal();">SUBMIT</a>
-        </div>
-        <script src="js/vendor/jquery-3.1.1.min.js"></script>
-<!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+        
+        <div class="editable"></div>
+        <a href="result.html" onClick="setSessionVal();">SUBMIT</a>
+        <input type="file" id="files" name="files[]" multiple />
+        <output id="list"></output>
+        <br/>  
+        
+        <script id="test" src="js/vendor/jquery-3.1.1.min.js"></script>
+        <script src="js/medium-editor.js"></script>
+        <script src="js/handlebars/dist/handlebars.runtime.min.js"></script>
+        <script src="js/jquery-sortable/source/js/jquery-sortable-min.js"></script>
+        <script src="js/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
+        <script src="js/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
+        <script src="js/blueimp-file-upload/js/jquery.fileupload.js"></script>
+        <script src="js/medium-editor-insert-plugin/dist/js/medium-editor-insert-plugin.min.js"></script>
+        
         <script>
+            var editor = new MediumEditor('.editable',{
+                toolbar: {
+                    buttons: ['bold', 'italic', 'underline', 'anchor', 'h1']
+                }
+            });
+            
             function setSessionVal() {
-                var val = $("#input").val();
-                sessionStorage.formVal = val;
+                
+                var allContents = editor.serialize();
+                var elContent = allContents["element-0"].value;
+                sessionStorage.formVal = elContent;
             }
+            
+            $(function () {
+                $('.editable').mediumInsert({
+                    editor: editor,
+                    addons: {
+                        images: {
+                            captions: false
+                        }
+                    }
+                });
+            });
         </script>
     </body>
 </html>

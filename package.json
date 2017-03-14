@@ -1,0 +1,22 @@
+{
+  "name": "web-brutalizer",
+  "version": "1.0.0",
+  "description": "Tool for creating brutalist websites",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lpalombo/web-brutalizer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lpalombo/web-brutalizer/issues"
+  },
+  "homepage": "https://github.com/lpalombo/web-brutalizer#readme",
+  "dependencies": {
+    "medium-editor-insert-plugin": "^2.4.0"
+  }
+}

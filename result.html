@@ -9,26 +9,43 @@
 
         <link rel="stylesheet" href="css/normalize.min.css">
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/core/butch.css">
+        <link rel="stylesheet" href="js/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin-frontend.min.css">
 
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
         <script src="js/vendor/mmd.min.js"></script>
-        <script src="js/vendor/packery.pkgd.min.js"></script>
+        <script src="js/vendor/FileSaver.min.js"></script>
+        <script src="js/vendor/jszip.min.js"></script>
+        <script src="js/vendor/jszip-utils.js"></script>
+        
     </head>
     <body>
-        <div class="randombox">
-            
-            <div id="result"></div>
-            <button class="p3" id="randombutton">RANDOMIZE</button><br /><br />
-            <input type="checkbox" id="overlapCheck" value="cbox1" /> Allow div overlap<br />
-            <input type="checkbox" id="alignCheck" value="cbox2" /> Align Divs<br />
-            <input type="checkbox" id="randomCheck" value="cbox2" /> Total randomization<br />
-            
-        </div>
-        <div class="inner">
-            
+        <div id="container">
+            <div class="randombox">
+
+                <div id="result"></div>
+                <button class="p3" id="randombutton">RANDOMIZE</button><br /><br />
+                <input type="checkbox" id="overlapCheck" value="cbox1" /> Allow div overlap<br />
+                <input type="checkbox" id="alignCheck" value="cbox2" /> Align Divs<br />
+                <input type="checkbox" id="orderCheck" value="cbox3" /> Random Order<br />
+                <input type="checkbox" id="randomCheck" value="cbox4" /> Total randomization<br />
+                <input type="checkbox" id="bgColorCheck" value="cbox5" /> Background Coloring<br />
+                <br />
+                <button class="p4" id="savezip">SAVE</button>
+
+            </div>
+            <div class="stuff">
+                <div class="outer">
+                    <div class="inner">
+
+                    </div>
+                </div>
+            </div>
         </div>
         <script src="js/vendor/jquery-3.1.1.min.js"></script>
 <!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
         <script src="js/main.js"></script>
+        <script src="js/brutalist.js"></script>
+        <script src="js/start.brutalizing.js"></script>
     </body>
 </html>
