@@ -20,12 +20,17 @@
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <body>
+        <div class="indexContainer">
+            <img src="img/constructionthumb.gif" height="28px">
+            <img src="img/constructionbanner.gif">
+            <img src="img/constructionthumb.gif" height="28px">
+            <div class="editable"></div>
+            <button class="p3" id="submit">Create a webpage</button>
+        </div>
         
-        <div class="editable"></div>
-        <a href="result.html" onClick="setSessionVal();">SUBMIT</a>
-        <input type="file" id="files" name="files[]" multiple />
-        <output id="list"></output>
-        <br/>  
+        
+        
+        
         
         <script id="test" src="js/vendor/jquery-3.1.1.min.js"></script>
         <script src="js/medium-editor.js"></script>
@@ -48,6 +53,7 @@
                 var allContents = editor.serialize();
                 var elContent = allContents["element-0"].value;
                 sessionStorage.formVal = elContent;
+                window.location.href = "result.html";
             }
             
             $(function () {
@@ -58,6 +64,9 @@
                             captions: false
                         }
                     }
+                });
+                $( "#submit" ).click(function( event ) {
+                  setSessionVal();
                 });
             });
         </script>
