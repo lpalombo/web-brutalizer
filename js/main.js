@@ -18,7 +18,7 @@ var colors = [ "#00ff00", "#efecca", "#046380"
              , "#2c3e50", "#3498db", "#e74c3c"
              , "#000000", "#fff0a5", "#468966"
              ];
-var isOverlapped = false, isGlobalStyle = false, isAllRandom = false;
+var isOverlapped = true, isGlobalStyle = false, isAllRandom = false, isVariableWidth = false, isDoubled = false;
 var isOrdered = false;
 var isBgColor = false;
 var marginValue = 0;
@@ -48,28 +48,22 @@ function setProperties() {
     
     randomizeStyle();
     
-    $('.inner p').each(function(){
-        $(this).css("width",200+Math.random()*600+"px");
-    });
-    
-    if(!isGlobalStyle){   
-        $('.inner').children().css("position","absolute");
-        if(!isOrdered){
-            var topAdd = 0;
-            $('.inner').children().each(function(){
-                var h = $(this).outerHeight(true);
-                topAdd = topAdd + getRndInteger(0,600);
-                $(this).css("top",topAdd+"px");
-                $(this).css("left",getRndInteger(0,100)+"%");
+    if(!isGlobalStyle){
+        
+        if(isVariableWidth){
+            $('.inner p').each(function(){
+                $(this).css("width",200+Math.random()*600+"px");
             });
         } else {
-            $('.inner').children().each(function(){
-                $(this).css("top",getRndInteger(0,1000)+"px");
-                $(this).css("left",getRndInteger(0,100)+"%");
-            });
+            $('.inner p').css("width","100%");
         }
         
+        $('.inner').css("text-align","center");
+        
+        
     } else if(isGlobalStyle){
+        $('.inner').css("text-align","left");
+        
         $('.inner').children().css("position","static");
         $('.inner').children().css("display","block");
         if(marginValue>100){
@@ -109,6 +103,8 @@ function randomizeStyle(){
     isAllRandom = $('#randomCheck').is(":checked");
     isBgColor = $('#bgColorCheck').is(":checked");
     isOrdered = $('#orderCheck').is(":checked");
+    isVariableWidth = $('#variableWidthCheck').is(":checked");
+    isDoubled = $('#doubledCheck').is(":checked");
     
     pClass = pClasses[~~(Math.random()*pClasses.length)];
     hClass = hClasses[~~(Math.random()*hClasses.length)];
@@ -118,11 +114,15 @@ function randomizeStyle(){
     $('.inner').children().removeAttr( 'style' );
     $('body').removeAttr( 'style' );
     
+    $('.inner p').removeClass().addClass(pClass);
+    $('.inner h1').removeClass().addClass(hClass);
     
+    if(isDoubled){
+        $('.inner').children().addClass("baffle");
+    }
     
     if(!isAllRandom){
-        $('.inner p').removeClass().addClass(pClass);
-        $('.inner h1').removeClass().addClass(hClass);
+        
         $('.inner').children().css("color",getColor(colorRow,0));
         if(isBgColor){
             //$('.inner').children().css("background-color",getColor(colorRow,1));
@@ -216,7 +216,7 @@ $(document).ready(function() {
 
         return false;
     });
-//    $(':checkbox').click(function() {
-//        randomizeStyle();
-//    });
+    $(':checkbox').click(function() {
+        randomizeStyle();
+    });
 });

@@ -208,15 +208,15 @@ textarea {
 }
 
 #container {
+    position: absolute;
     display: flex;
-    min-height: 100vh;
+/*    min-height: 100vh;*/
 }
 
-.randombox {
-    flex: 0 0 20em;
+.sidebar {
+/*    flex: 0 0 20em;*/
+    width: 20em;
     height: 100vh;
-    bottom: 0;
-    right: 0;
     background-color: yellow;
     box-sizing: border-box;
     padding: 20px;
@@ -224,21 +224,27 @@ textarea {
     transition: margin-left 0.5s ease;
 }
 
-.randombox:hover {
+.sidebar:hover {
     margin-left: 0px;
 }
 
-.stuff {
+.window {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.window-content{
+    flex: 1;
+    display: flex;
+    overflow: auto;
     height: 100vh;
-    overflow-y: scroll;
 }
 
 .outer {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background-color: white;
+    min-height: -webkit-min-content;
+    display: flex;
+    flex: 1;
 }
 
 button {
