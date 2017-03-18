@@ -5,11 +5,12 @@
 // Add some css animations!
 // Gotta make it so that you can tweak it post randomization, so you dont gotta do it all over again
 
-var imageDat = sessionStorage.image;
 $('.inner').html(sessionStorage.formVal);
+$('.inner').children().wrap("<div class='inner-child'></div>");
 
 var pClasses = ["p1","p2","p3","p4","p5","p6","p7","p8"];
 var hClasses = ["h1","h2","h3","h4","h5","h6","h7","h8"];
+var alignClasses = ["inner-child-top","inner-child-bottom","inner-child-center"]
 var colors = [ "#00ff00", "#efecca", "#046380"
              , "#ff0000", "#d9cb9e", "#dc3522"
              , "#0000ff", "#ffe11a", "#1f8a70"
@@ -49,16 +50,9 @@ function setProperties() {
     randomizeStyle();
     
     if(!isGlobalStyle){
-        
-        if(isVariableWidth){
-            $('.inner p').each(function(){
-                $(this).css("width",200+Math.random()*600+"px");
-            });
-        } else {
-            $('.inner p').css("width","100%");
-        }
-        
-        $('.inner').css("text-align","center");
+        $('.inner').children().each(function(){
+            $(this).addClass(getRndArrayVal(alignClasses));
+        });
         
         
     } else if(isGlobalStyle){
@@ -72,22 +66,6 @@ function setProperties() {
             $('.inner').css("width","80%");
         } else {
             $('.inner').css("margin","0 0 0 "+marginValue+"px");
-        }
-        
-    }
-    
-    if(!isOverlapped && !isGlobalStyle){
-        var boxes = $('.inner').children();
-        
-        for(var i = 0; i < boxes.length; i++){
-            var boxA = $(boxes[i]);
-            for(var j = i + 1; j <boxes.length; j++){
-                var boxB = $(boxes[j]);
-                if(isCollided(boxA,boxB)){
-                    console.log(boxA);
-                    setProperties(boxA);
-                }
-            }
         }
     }
     
@@ -114,6 +92,7 @@ function randomizeStyle(){
     $('.inner').children().removeAttr( 'style' );
     $('body').removeAttr( 'style' );
     
+    $('.inner').children().removeClass().addClass('inner-child');
     $('.inner p').removeClass().addClass(pClass);
     $('.inner h1').removeClass().addClass(hClass);
     
@@ -146,35 +125,14 @@ function randomizeStyle(){
     }
 }
 
-function getColor(row, col){
-    return colors[row * 3 + col];
-}
-
-function getRndInteger(min, max) {
-    return Math.floor(Math.random() * (max - min) ) + min;
-}
-
-var Promise = window.Promise;
-if (!Promise) {
-    Promise = JSZip.external.Promise;
-}
-
-function urlToPromise(url) {
-    return new Promise(function(resolve, reject) {
-        JSZipUtils.getBinaryContent(url, function (err, data) {
-            if(err) {
-                reject(err);
-            } else {
-                resolve(data);
-            }
-        });
-    });
-}
-
-
 $(document).ready(function() {
     
+    // FIX THIS BAD BOY
     
+    $("#boxWidth").click(function(){
+        var value = $(this).val();
+        setRangeValue(value);
+    });
     
     setProperties();
     $( "#randombutton" ).click(function() {
@@ -220,3 +178,35 @@ $(document).ready(function() {
         randomizeStyle();
     });
 });
+
+function getColor(row, col){
+    return colors[row * 3 + col];
+}
+
+function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min) ) + min;
+}
+function getRndArrayVal(array) {
+    return array[getRndInteger(0,array.length)];
+}
+function setRangeValue(val){
+    $(".inner").children().css("flex","0 0 "+val+"%");
+}
+
+
+var Promise = window.Promise;
+if (!Promise) {
+    Promise = JSZip.external.Promise;
+}
+
+function urlToPromise(url) {
+    return new Promise(function(resolve, reject) {
+        JSZipUtils.getBinaryContent(url, function (err, data) {
+            if(err) {
+                reject(err);
+            } else {
+                resolve(data);
+            }
+        });
+    });
+}

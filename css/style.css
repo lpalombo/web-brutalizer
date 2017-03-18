@@ -1,70 +1,13 @@
-/*! HTML5 Boilerplate v5.0 | MIT License | http://h5bp.com/ */
-
 html {
     color: #222;
     font-size: 1em;
     line-height: 1.4;
-    height: 100%;
 }
 
 body {
     min-height: 100%;
     font-family: monospace;
 }
-
-::-moz-selection {
-    background: #b3d4fc;
-    text-shadow: none;
-}
-
-::selection {
-    background: #b3d4fc;
-    text-shadow: none;
-}
-
-hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 1em 0;
-    padding: 0;
-}
-
-audio,
-canvas,
-iframe,
-img,
-svg,
-video {
-    vertical-align: middle;
-}
-
-
-/*
-p{
-    position: absolute;
-    width: 300px;
-}
-*/
-
-fieldset {
-    border: 0;
-    margin: 0;
-    padding: 0;
-}
-
-textarea {
-    resize: vertical;
-}
-
-.browserupgrade {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
-}
-
 
 /* ==========================================================================
    Titles
@@ -237,7 +180,8 @@ textarea {
 .window-content{
     flex: 1;
     display: flex;
-    overflow: auto;
+
+    overflow-y: auto;
     height: 100vh;
 }
 
@@ -246,6 +190,31 @@ textarea {
     display: flex;
     flex: 1;
 }
+
+/* GRID SHIT */
+
+.inner{
+    flex: 1;
+    display: flex;
+    flex-flow: row wrap;
+}
+.inner-child{
+    flex: 1 0 33%;
+}
+
+/* YOU WERE WORKING ON GETTING THE WRAP STUFF TO WORK */
+
+.inner-child-top {
+  align-self: flex-start;
+}
+.inner-child-bottom {
+  align-self: flex-end;
+}
+.inner-child-center {
+  align-self: center;
+}
+
+/* END GRID SHIT */
 
 button {
     padding: 5px;

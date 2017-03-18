@@ -7,18 +7,19 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="css/normalize.min.css">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/core/core.css">
         <link rel="stylesheet" href="js/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin-frontend.min.css">
-
+        <link rel="stylesheet" href="css/rangeslider.css">
+        
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-        <script src="js/vendor/mmd.min.js"></script>
         <script src="js/vendor/FileSaver.min.js"></script>
         <script src="js/vendor/jszip.min.js"></script>
         <script src="js/vendor/jszip-utils.js"></script>
         
         <script src="js/vendor/jquery-3.1.1.min.js"></script>
+        <script src="js/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
+        <script src="js/rangeslider.min.js"></script>
         
         <script src="js/brutalist.js"></script>
         <script src="js/start.brutalizing.js"></script>
@@ -30,9 +31,12 @@
                 <div class="control-group">
                     <button class="p3" id="randombutton">RANDOMIZE</button>
                     <label class="control control--checkbox">Allow div overlap
-                      <input type="checkbox"/ id="overlapCheck" checked>
+                      <input type="checkbox" id="overlapCheck" checked>
                       <div class="control__indicator"></div>
                     </label>
+                    <input type="range" id="boxWidth" min="11.11" max="100" step="11.11">
+                    <label class="control control--checkbox">Box width</label>
+                    
                     <label class="control control--checkbox">Align Divs
                       <input type="checkbox" id="alignCheck"/>
                       <div class="control__indicator"></div>
@@ -71,7 +75,7 @@
             </div>
         </div>
         
-<!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+        
         <script src="js/main.js"></script>
         
     </body>
