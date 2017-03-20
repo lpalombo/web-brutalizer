@@ -19,8 +19,8 @@ var colors = [ "#00ff00", "#efecca", "#046380"
              , "#2c3e50", "#3498db", "#e74c3c"
              , "#000000", "#fff0a5", "#468966"
              ];
-var isOverlapped = true, isGlobalStyle = false, isAllRandom = false, isVariableWidth = false, isDoubled = false;
-var isOrdered = false;
+var isRndAlign = true, isCentered = false, isAllRandom = false, isVariableWidth = false, isDoubled = false;
+var isFuckedPaddings = false, isFuckedMargins = false, isBoxBg = false;
 var isBgColor = false;
 var marginValue = 0;
 var topValue, leftValue;
@@ -48,39 +48,45 @@ function setProperties() {
     marginValue = Math.random()*120;
     
     randomizeStyle();
+    brutalize();
     
-    if(!isGlobalStyle){
+    if(isRndAlign){
         $('.inner').children().each(function(){
             $(this).addClass(getRndArrayVal(alignClasses));
         });
-        
-        
-    } else if(isGlobalStyle){
-        $('.inner').css("text-align","left");
-        
-        $('.inner').children().css("position","static");
-        $('.inner').children().css("display","block");
-        if(marginValue>100){
-            
-            $('.inner').css("margin","0 auto");
-            $('.inner').css("width","80%");
-        } else {
-            $('.inner').css("margin","0 0 0 "+marginValue+"px");
-        }
     }
     
+    if(isVariableWidth){
+        var val = 100/$('#colWidth').val();
+        $(".inner").children().css("flex","0 0 "+val+"%");
+    }
     
-//    $('.outer').css("height",$( document ).height()+400+"px");
-//    $('.outer').css("width",$( document ).width());
+    if(isCentered){
+        $(".inner").css("margin","0 "+getRndInteger(0,30)+"%");
+    }
+    
+    if(isFuckedMargins){
+        $(".inner-child").each(function(){
+            $(this).css("margin",getRndInteger(-30,30)+"px "+getRndInteger(-30,30)+"px");
+        });
+    }
+    
+    if(isFuckedPaddings){
+        $(".inner-child").each(function(){
+            $(this).css("padding",getRndInteger(0,30)+"px "+getRndInteger(0,30)+"px");
+        });
+    }
 }
 
 function randomizeStyle(){
     
-    isOverlapped = $('#overlapCheck').is(":checked");
-    isGlobalStyle = $('#alignCheck').is(":checked");
+    isRndAlign = $('#rndAlignCheck').is(":checked");
+    isCentered = $('#centerCheck').is(":checked");
     isAllRandom = $('#randomCheck').is(":checked");
     isBgColor = $('#bgColorCheck').is(":checked");
-    isOrdered = $('#orderCheck').is(":checked");
+    isFuckedMargins = $('#marginsCheck').is(":checked");
+    isFuckedPaddings = $('#paddingsCheck').is(":checked");
+    isBoxBg = $('#boxBgCheck').is(":checked");
     isVariableWidth = $('#variableWidthCheck').is(":checked");
     isDoubled = $('#doubledCheck').is(":checked");
     
@@ -88,8 +94,10 @@ function randomizeStyle(){
     hClass = hClasses[~~(Math.random()*hClasses.length)];
     var colorRow = Math.floor(Math.random()*(colors.length/3));
     
+    $('.outer').removeAttr( 'style' );
     $('.inner').removeAttr( 'style' );
     $('.inner').children().removeAttr( 'style' );
+    $('.inner-child').children().removeAttr( 'style' );
     $('body').removeAttr( 'style' );
     
     $('.inner').children().removeClass().addClass('inner-child');
@@ -97,23 +105,25 @@ function randomizeStyle(){
     $('.inner h1').removeClass().addClass(hClass);
     
     if(isDoubled){
-        $('.inner').children().addClass("baffle");
+        $('.inner-child').children().addClass("baffle");
     }
     
-    if(!isAllRandom){
-        
-        $('.inner').children().css("color",getColor(colorRow,0));
-        if(isBgColor){
-            //$('.inner').children().css("background-color",getColor(colorRow,1));
-            //$('body').css("background-color",getColor(colorRow,1));
-            $('.outer').css(
-                "background","linear-gradient(to bottom,"+getColor(colorRow,1)+","+getColor(colorRow,2)+")"
-            );
-        }
-    } else {
+    if(isBgColor){
+        //$('.inner').children().css("background-color",getColor(colorRow,1));
+        //$('body').css("background-color",getColor(colorRow,1));
+        $('.outer').css(
+            "background","linear-gradient(to bottom,"+getColor(colorRow,1)+","+getColor(colorRow,2)+")"
+        );
+    }
+    if(isBoxBg){
+        $(".inner-child").css("background-color",getColor(colorRow,1));
+    }
+    
+    
+    if(isAllRandom){
         $('.outer').css("background",colors[getRndInteger(0,colors.length)]);
         
-        $('.inner').children().each(function(){
+        $('.inner-child').children().each(function(){
             
             $(this).removeClass().addClass(pClasses[getRndInteger(0,pClasses.length)]);
             
@@ -127,14 +137,8 @@ function randomizeStyle(){
 
 $(document).ready(function() {
     
-    // FIX THIS BAD BOY
-    
-    $("#boxWidth").click(function(){
-        var value = $(this).val();
-        setRangeValue(value);
-    });
-    
     setProperties();
+    
     $( "#randombutton" ).click(function() {
         setProperties();
     
@@ -189,10 +193,6 @@ function getRndInteger(min, max) {
 function getRndArrayVal(array) {
     return array[getRndInteger(0,array.length)];
 }
-function setRangeValue(val){
-    $(".inner").children().css("flex","0 0 "+val+"%");
-}
-
 
 var Promise = window.Promise;
 if (!Promise) {

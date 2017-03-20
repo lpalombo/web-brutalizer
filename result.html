@@ -21,8 +21,7 @@
         <script src="js/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
         <script src="js/rangeslider.min.js"></script>
         
-        <script src="js/brutalist.js"></script>
-        <script src="js/start.brutalizing.js"></script>
+        
         
     </head>
     <body>
@@ -30,30 +29,37 @@
             <div class="sidebar">              
                 <div class="control-group">
                     <button class="p3" id="randombutton">RANDOMIZE</button>
-                    <label class="control control--checkbox">Allow div overlap
-                      <input type="checkbox" id="overlapCheck" checked>
+                    <label class="control control--checkbox">Random row alignment
+                      <input type="checkbox" id="rndAlignCheck" checked>
                       <div class="control__indicator"></div>
                     </label>
-                    <input type="range" id="boxWidth" min="11.11" max="100" step="11.11">
-                    <label class="control control--checkbox">Box width</label>
-                    
-                    <label class="control control--checkbox">Align Divs
-                      <input type="checkbox" id="alignCheck"/>
-                      <div class="control__indicator"></div>
-                    </label>
-                    <label class="control control--checkbox">Variable Width
+                    <input type="range" id="colWidth" min="1" max="5" step="1">
+                    <label class="control control--checkbox">Variable Column Width
                       <input type="checkbox" id="variableWidthCheck"/>
+                      
                       <div class="control__indicator"></div>
                     </label>
-                    <label class="control control--checkbox">Random Order
-                      <input type="checkbox" id="orderCheck"/>
+                    <label class="control control--checkbox">Center Page
+                      <input type="checkbox" id="centerCheck"/>
+                      <div class="control__indicator"></div>
+                    </label>
+                    <label class="control control--checkbox">Margin fucker
+                      <input type="checkbox" id="marginsCheck"/>
+                      <div class="control__indicator"></div>
+                    </label>
+                    <label class="control control--checkbox">Padding fucker
+                      <input type="checkbox" id="paddingsCheck"/>
+                      <div class="control__indicator"></div>
+                    </label>
+                    <label class="control control--checkbox">Box backgrounds
+                      <input type="checkbox" id="boxBgCheck"/>
                       <div class="control__indicator"></div>
                     </label>
                     <label class="control control--checkbox">Total randomization
                       <input type="checkbox" id="randomCheck"/>
                       <div class="control__indicator"></div>
                     </label>
-                    <label class="control control--checkbox">Background Coloring
+                    <label class="control control--checkbox">Random Background Coloring
                       <input type="checkbox" id="bgColorCheck"/>
                       <div class="control__indicator"></div>
                     </label>
@@ -74,9 +80,10 @@
                 </div>
             </div>
         </div>
-        
-        
         <script src="js/main.js"></script>
+        <script src="js/brutalist.js"></script>
+        <script src="js/start.brutalizing.js"></script>
+        
         
     </body>
 </html>

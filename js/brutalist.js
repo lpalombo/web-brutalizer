@@ -69,8 +69,6 @@ $(document).ready(function(){
         domain:   [-0.2, 0.2],
         viewport: { x: 0.0, y: 0.0, width: 1000.0, height: 400.0 }
     });
-    
-    console.log("hey?");
 	/*** Circle */
     var circle = function (t)
     {

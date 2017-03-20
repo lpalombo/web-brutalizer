@@ -1,7 +1,7 @@
 /* Let the Brutalization Begin */
 /* NOTE: This script is must be UTF-8 encoded, so as to ensure obfuscated character rendering on Baffle */
 
-$(document).ready(function(){
+function brutalize(){
 	
 /* FITTEXT */
 $(".fittext").fitText();
@@ -25,4 +25,4 @@ let b = baffle('.baffle', { characters: '█▓▒░', speed: 150 }).reveal(250
 let bl = baffle('.baffle-longer', { characters: '█▓▒░', speed: 150, duration: 3000 }).reveal(2500); /* Animation duration set to 3 seconds */
 let bf = baffle('.baffle-forever', {characters: '█▓▒░', speed: 150}).start(); /* Animation continues on an endless loop */
 
-});
+}
