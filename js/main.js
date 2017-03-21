@@ -159,7 +159,6 @@ $(document).ready(function() {
     
     $( "#randombutton" ).click(function() {
         setProperties();
-    
     });
     
     $("#savezip").click(function(){
@@ -178,12 +177,16 @@ $(document).ready(function() {
         var docBody = $('.outer').clone().wrap('<div>').parent().html();
 
         
-        var docFooter = '<script src="js/vendor/jquery-3.1.1.min.js"></script></body></html>';
+        var docFooter = '<script src="js/vendor/jquery-3.1.1.min.js"></script><script>$(document).ready(function(){brutalize();});</script></body></html>';
         
-        zip.file("css/normalize.min.css",urlToPromise("/css/normalize.min.css"),{binary:true});
         zip.file("css/core/butch.css",urlToPromise("/css/core/butch.css"),{binary:true});
+        zip.file("css/core/default.css",urlToPromise("/css/core/default.css"),{binary:true});
+        zip.file("css/core/core.css",urlToPromise("/css/core/core.css"),{binary:true});
+        zip.file("js/brutalist.js",urlToPromise("js/brutalist.js"),{binary:true});
+        zip.file("js/start.brutalizing.js",urlToPromise("js/start.brutalizing.js"),{binary:true});
+        zip.file("js/vendor/jquery-3.1.1.min.js",urlToPromise("js/vendor/jquery-3.1.1.min.js"),{binary:true});
+        zip.file("js/vendor/modernizr-2.8.3.min.js",urlToPromise("js/vendor/modernizr-2.8.3.min.js"),{binary:true});
         zip.file("css/style.css",urlToPromise("/css/style.css"),{binary:true});
-        zip.file("img/displaypic.png",urlToPromise("/img/displaypic.png"),{binary:true});
         zip.file("index.html",docHead+docBody+docFooter,{binary:true});
         
         // when everything has been downloaded, we can trigger the dl
@@ -196,8 +199,13 @@ $(document).ready(function() {
 
         return false;
     });
+    
     $(':checkbox').click(function() {
         randomizeStyle();
+    });
+    
+    $( "#variableWidthCheck" ).click(function() {
+      $("#colWidth").toggleClass( "hidden", 1000, "easeOutSine" );
     });
 });
 

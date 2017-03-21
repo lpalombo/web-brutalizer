@@ -10,7 +10,6 @@
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/core/core.css">
         <link rel="stylesheet" href="js/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin-frontend.min.css">
-        <link rel="stylesheet" href="css/rangeslider.css">
         
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
         <script src="js/vendor/FileSaver.min.js"></script>
@@ -19,7 +18,6 @@
         
         <script src="js/vendor/jquery-3.1.1.min.js"></script>
         <script src="js/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
-        <script src="js/rangeslider.min.js"></script>
         
         
         
@@ -33,12 +31,12 @@
                       <input type="checkbox" id="rndAlignCheck" checked>
                       <div class="control__indicator"></div>
                     </label>
-                    <input type="range" id="colWidth" min="1" max="5" step="1">
-                    <label class="control control--checkbox">Variable Column Width
+                    <label class="control control--checkbox">Variable Column Width ▼
                       <input type="checkbox" id="variableWidthCheck"/>
-                      
                       <div class="control__indicator"></div>
                     </label>
+                    <input type="range" class="hidden" id="colWidth" min="1" max="5" step="1">
+                    
                     <label class="control control--checkbox">Center Page
                       <input type="checkbox" id="centerCheck"/>
                       <div class="control__indicator"></div>
