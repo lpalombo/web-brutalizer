@@ -10,7 +10,10 @@ $('.inner').children().wrap("<div class='inner-child'></div>");
 
 var pClasses = ["p1","p2","p3","p4","p5","p6","p7","p8"];
 var hClasses = ["h1","h2","h3","h4","h5","h6","h7","h8"];
-var alignClasses = ["inner-child-top","inner-child-bottom","inner-child-center"]
+var fuckClasses = ["enlarge","shrink","skew","skew-left","perspective","perspective-right",
+                  "flip","flip-up","blur","invert","baffle","rotate","rotate-right"];
+var hoverClasses = ["rainbow","biggerize","skewize","dropshadowize","regular","strikethrough","background-rainbow","underline"];
+var alignClasses = ["inner-child-top","inner-child-bottom","inner-child-center"];
 var colors = [ "#00ff00", "#efecca", "#046380"
              , "#ff0000", "#d9cb9e", "#dc3522"
              , "#0000ff", "#ffe11a", "#1f8a70"
@@ -19,8 +22,8 @@ var colors = [ "#00ff00", "#efecca", "#046380"
              , "#2c3e50", "#3498db", "#e74c3c"
              , "#000000", "#fff0a5", "#468966"
              ];
-var isRndAlign = true, isCentered = false, isAllRandom = false, isVariableWidth = false, isDoubled = false;
-var isFuckedPaddings = false, isFuckedMargins = false, isBoxBg = false;
+var isRndAlign = true, isCentered = false, isAllRandom = false, isVariableWidth = false, isEffects = false;
+var isFuckedPaddings = false, isFuckedMargins = false, isBoxBg = false, isHovers = false;
 var isBgColor = false;
 var marginValue = 0;
 var topValue, leftValue;
@@ -88,7 +91,8 @@ function randomizeStyle(){
     isFuckedPaddings = $('#paddingsCheck').is(":checked");
     isBoxBg = $('#boxBgCheck').is(":checked");
     isVariableWidth = $('#variableWidthCheck').is(":checked");
-    isDoubled = $('#doubledCheck').is(":checked");
+    isEffects = $('#effectCheck').is(":checked");
+    isHovers = $('#hoverCheck').is(":checked");
     
     pClass = pClasses[~~(Math.random()*pClasses.length)];
     hClass = hClasses[~~(Math.random()*hClasses.length)];
@@ -99,13 +103,19 @@ function randomizeStyle(){
     $('.inner').children().removeAttr( 'style' );
     $('.inner-child').children().removeAttr( 'style' );
     $('body').removeAttr( 'style' );
+    $('a').removeAttr( 'style' );
     
     $('.inner').children().removeClass().addClass('inner-child');
     $('.inner p').removeClass().addClass(pClass);
     $('.inner h1').removeClass().addClass(hClass);
+    $("a").removeClass();
     
-    if(isDoubled){
-        $('.inner-child').children().addClass("baffle");
+    if(isEffects){
+         $(".inner-child").each( function(){
+            if(getRndInteger(0,2)==1){
+                $(this).addClass(getRndArrayVal(fuckClasses));
+            } 
+         });
     }
     
     if(isBgColor){
@@ -118,7 +128,15 @@ function randomizeStyle(){
     if(isBoxBg){
         $(".inner-child").css("background-color",getColor(colorRow,1));
     }
-    
+    if(isHovers){
+        $("a").addClass(getRndArrayVal(hoverClasses));
+        
+        if(getRndInteger(0,2)==1){
+            $("a").css("color",getColor(colorRow,1));
+            $("a").css("background-color",getColor(colorRow,2));
+            $("a").css("padding","2px");
+        }
+    }
     
     if(isAllRandom){
         $('.outer').css("background",colors[getRndInteger(0,colors.length)]);

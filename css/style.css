@@ -163,12 +163,12 @@ body {
     background-color: yellow;
     box-sizing: border-box;
     padding: 20px;
-    margin-left: 0;
+    margin-left: -19em;
     transition: margin-left 0.5s ease;
 }
 
 .sidebar:hover {
-    margin-left: 0px;
+    margin-left: 0em;
 }
 
 .window {
@@ -227,12 +227,6 @@ button {
 
 button:hover {
     background-color: orange;
-}
-
-.randombox textarea {
-    width: 100%;
-    height: 100px;
-    margin-top: 30px;
 }
 
 .blue {
@@ -435,12 +429,132 @@ textarea {
     border-top-color: #ccc;
 }
 
+/* ==========================================================================
+   Hovers
+   ========================================================================== */
+.regular:hover{
+    color:blue;
+}
+.biggerize{
+    display: inline-block;
+    transition: transform 0.25s ease-in-out;
+    transform: scale(1);
+}
+.biggerize:hover{
+    transform: scale(1.25);
+}
+.skewize{
+    display: inline-block;
+    transition: transform 0.25s ease-in-out;
+    transform: skew(0,0);
+}
+.skewize:hover{
+    transform: skew(20deg,0);
+}
+.dropshadowize{
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 6px #000;
+    transition: text-shadow 0.25s ease-in-out;
+}
+.dropshadowize:hover{
+    text-shadow: 5px 5px 8px #000;
+}
+.underline{
+    text-decoration: underline;
+}
+.underline:hover{
+    font-weight: bold;
+}
+
+/* https://codepen.io/beben-koben/pen/gfuvc */
+
+.rainbow:hover {
+animation:rainbow .2s infinite;
+}
+.background-rainbow:hover {
+animation:background-rainbow .2s infinite;
+}
+@keyframes rainbow {
+0% {color: #ff0000;}
+10% {color: #ff8000;}
+20% {color: #ffff00;}
+30% {color: #80ff00;}
+40% {color: #00ff00;}
+50% {color: #00ff80;}
+60% {color: #00ffff;}
+70% {color: #0080ff;}
+80% {color: #0000ff;}
+90% {color: #8000ff;}
+100% {color: #ff0080;}
+}
+@keyframes background-rainbow {
+0% {background-color: #ff0000;}
+10% {background-color: #ff8000;}
+20% {background-color: #ffff00;}
+30% {background-color: #80ff00;}
+40% {background-color: #00ff00;}
+50% {background-color: #00ff80;}
+60% {background-color: #00ffff;}
+70% {background-color: #0080ff;}
+80% {background-color: #0000ff;}
+90% {background-color: #8000ff;}
+100% {background-color: #ff0080;}
+}
+
+/*https://codepen.io/EdenSG/pen/jPENoE*/
+
+.strikethrough {
+    display: inline-block;
+    position: relative;
+    color: black;
+}
+
+.strikethrough:after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 2px;
+    margin-top: -0.7em;
+    background: black;
+    transform-origin: center left;
+    animation: strikethrough 1s 0.5s cubic-bezier(.55, 0, .1, 1) 1;
+    transition: transform 0.5s cubic-bezier(.55, 0, .1, 1);
+}
+
+
+/* Little hover effect */
+
+.strikethrough:hover:after {
+    transform: scaleX(0);
+    transform-origin: center right;
+}
+
+
+/* Keyframes for initial animation */
+
+@keyframes strikethrough {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
 
 /* ==========================================================================
    Media Queries
    ========================================================================== */
 
-@media only screen and (min-width: 35em) {}
+@media only screen and (min-width: 35em) {
+/*
+    .inner-child{
+        flex: 1 !important;
+    }
+*/
+}
 
 @media print,
 (-o-min-device-pixel-ratio: 5/4),
