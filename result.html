@@ -1,92 +1,97 @@
 <!doctype html>
 <html class="no-js" lang="">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/core/core.css">
-        <link rel="stylesheet" href="js/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin-frontend.min.css">
-        
-        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-        <script src="js/vendor/FileSaver.min.js"></script>
-        <script src="js/vendor/jszip.min.js"></script>
-        <script src="js/vendor/jszip-utils.js"></script>
-        
-        <script src="js/vendor/jquery-3.1.1.min.js"></script>
-        <script src="js/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
-        
-        
-        
-    </head>
-    <body>
-        <div id="container">
-            <div class="sidebar">              
-                <div class="control-group">
-                    <button class="p3" id="randombutton">RANDOMIZE</button>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/core/core.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="js/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin-frontend.min.css">
+    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="js/vendor/FileSaver.min.js"></script>
+    <script src="js/vendor/jszip.min.js"></script>
+    <script src="js/vendor/jszip-utils.js"></script>
+    <script src="js/vendor/jquery-3.1.1.min.js"></script>
+    <script src="js/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
+</head>
+
+<body>
+    <div id="container">
+        <div class="sidebar">
+            <div class="buttongroup inner-child-center">
+                <button class="background-rainbow" id="randombutton">RANDOMIZE</button>
+            </div>
+            <div class="control-group">
+                <div class="inner-control-group">
+                    <h3>Alignment</h3>
                     <label class="control control--checkbox">Random row alignment
-                      <input type="checkbox" id="rndAlignCheck" checked>
-                      <div class="control__indicator"></div>
+                        <input type="checkbox" id="rndAlignCheck">
+                        <div class="control__indicator"></div>
                     </label>
                     <label class="control control--checkbox">Variable Column Width ▼
-                      <input type="checkbox" id="variableWidthCheck"/>
-                      <div class="control__indicator"></div>
+                        <input type="checkbox" id="variableWidthCheck" />
+                        <div class="control__indicator"></div>
                     </label>
-                    <input type="range" class="hidden" id="colWidth" min="1" max="5" step="1">
-                    
+                    <div class="rangeDiv" style="display: none">
+                        <input type="range" id="colWidth" min="1" max="5" step="1"> </div>
                     <label class="control control--checkbox">Center Page
-                      <input type="checkbox" id="centerCheck"/>
-                      <div class="control__indicator"></div>
+                        <input type="checkbox" id="centerCheck" />
+                        <div class="control__indicator"></div>
                     </label>
-                    <label class="control control--checkbox">Margin fucker
-                      <input type="checkbox" id="marginsCheck"/>
-                      <div class="control__indicator"></div>
-                    </label>
-                    <label class="control control--checkbox">Padding fucker
-                      <input type="checkbox" id="paddingsCheck"/>
-                      <div class="control__indicator"></div>
+                </div>
+                <div class="inner-control-group">
+                    <h3>Color</h3>
+                    <label class="control control--checkbox">Random Background Coloring
+                        <input type="checkbox" id="bgColorCheck" />
+                        <div class="control__indicator"></div>
                     </label>
                     <label class="control control--checkbox">Box backgrounds
-                      <input type="checkbox" id="boxBgCheck"/>
-                      <div class="control__indicator"></div>
+                        <input type="checkbox" id="boxBgCheck" />
+                        <div class="control__indicator"></div>
+                    </label>
+                </div>
+                <div class="inner-control-group">
+                    <h3>Brutalize</h3>
+                    <label class="control control--checkbox">Margin fucker
+                        <input type="checkbox" id="marginsCheck" />
+                        <div class="control__indicator"></div>
+                    </label>
+                    <label class="control control--checkbox">Padding fucker
+                        <input type="checkbox" id="paddingsCheck" />
+                        <div class="control__indicator"></div>
                     </label>
                     <label class="control control--checkbox">Style fucker
-                      <input type="checkbox" id="randomCheck"/>
-                      <div class="control__indicator"></div>
+                        <input type="checkbox" id="randomCheck" />
+                        <div class="control__indicator"></div>
                     </label>
                     <label class="control control--checkbox">Effect fucker
-                      <input type="checkbox" id="effectCheck"/>
-                      <div class="control__indicator"></div>
+                        <input type="checkbox" id="effectCheck" />
+                        <div class="control__indicator"></div>
                     </label>
-                    <label class="control control--checkbox">Hover fucker
-                      <input type="checkbox" id="hoverCheck"/>
-                      <div class="control__indicator"></div>
+                    <label class="control control--checkbox">Link fucker
+                        <input type="checkbox" id="hoverCheck" />
+                        <div class="control__indicator"></div>
                     </label>
-                    <label class="control control--checkbox">Random Background Coloring
-                      <input type="checkbox" id="bgColorCheck"/>
-                      <div class="control__indicator"></div>
-                    </label>
-                    
-                    <button class="p3" id="savezip">SAVE</button>
-                  </div>
+                </div>
             </div>
-            <div class="window">
-                <div class="window-content">
-                    <div class="outer">
-                        <div class="inner">
-
-                        </div>
-                    </div>
+            <div class="buttongroup inner-child-center">
+                <button id="savezip">SAVE TO ARCHIVE</button>
+            </div>
+        </div>
+        <div class="window">
+            <div class="window-content">
+                <div class="outer">
+                    <div class="inner"> </div>
                 </div>
             </div>
         </div>
-        <script src="js/main.js"></script>
-        <script src="js/brutalist.js"></script>
-        <script src="js/start.brutalizing.js"></script>
-        
-        
-    </body>
+    </div>
+    <script src="js/main.js"></script>
+    <script src="js/brutalist.js"></script>
+    <script src="js/start.brutalizing.js"></script>
+</body>
+
 </html>

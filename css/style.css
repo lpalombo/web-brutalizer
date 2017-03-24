@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
 html {
     color: #222;
     font-size: 1em;
@@ -6,8 +8,10 @@ html {
 
 body {
     min-height: 100%;
-    font-family: monospace;
+    font-family: 'Source Sans Pro', 'Arial', sans-serif;;
+    font-weight: bold;
 }
+
 
 /* ==========================================================================
    Titles
@@ -151,16 +155,16 @@ body {
 }
 
 #container {
-    position: absolute;
     display: flex;
 /*    min-height: 100vh;*/
 }
 
 .sidebar {
-/*    flex: 0 0 20em;*/
+    display: flex;
+    flex-flow: column; 
     width: 20em;
-    height: 100vh;
-    background-color: yellow;
+    min-height: 100vh;
+    background-color: #F9F562;
     box-sizing: border-box;
     padding: 20px;
     margin-left: 0em;
@@ -170,9 +174,17 @@ body {
 .sidebar:hover {
     margin-left: 0em;
 }
+h3{
+    font-size: 12px;
+    color: #3251A2;
+    text-transform: uppercase;
+    font-weight: 800;
+    margin-bottom: 0;
+    margin-top: 10px;
+}
 
 .window {
-    flex: 1;
+    flex: 1 100%;
     display: flex;
     flex-direction: column;
 }
@@ -218,14 +230,20 @@ body {
 
 /* END GRID SHIT */
 
-button {
-    padding: 5px;
-    border: 2px solid black;
-    box-sizing: border-box;
-    background-color: yellow;
+.buttongroup{
+
 }
 
-button:hover {
+.buttongroup button {
+    padding: 10px;
+    border: 2px solid black;
+    margin: 10px 0;
+    box-sizing: border-box;
+    background-color: rgba(0,0,0,0);
+    min-width: 175px;
+}
+
+.buttongroup button:hover {
     background-color: orange;
 }
 
@@ -260,6 +278,17 @@ textarea {
     height: 75px;
     border: 1px solid #000;
     margin: 10px 5px 0 0;
+}
+
+.menubutton{
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    width: 100px;
+    height: 100px;
+    background-color: yellow;
+    z-index: 999;
+    border: 1px solid;
 }
 
 /* ==========================================================================
@@ -382,14 +411,12 @@ animation:background-rainbow .2s infinite;
    ========================================================================== */
 
 .control-group {
-    vertical-align: top;
-    text-align: left;
+    flex: 1 100%;
+}
+.inner-control-group{
+    
 }
 
-.control-group button {
-    width: 100%;
-    margin: 1em 0;
-}
 
 .control {
     display: block;
@@ -404,7 +431,6 @@ animation:background-rainbow .2s infinite;
 .control:first-of-type {
     border-top: 0px;
 }
-
 
 /*
     .control:last- {
@@ -424,7 +450,8 @@ animation:background-rainbow .2s infinite;
     left: 0px;
     height: 20px;
     width: 20px;
-    border: 1px solid;
+    border: 4px solid;
+    transition: background .25s ease;
 }
 
 .control--radio .control__indicator {
@@ -462,12 +489,12 @@ animation:background-rainbow .2s infinite;
 }
 
 .control--checkbox .control__indicator:after {
-    left: 8px;
-    top: 4px;
-    width: 3px;
-    height: 8px;
-    border: solid black;
-    border-width: 0 2px 2px 0;
+    left: 4px;
+    top: -4px;
+    width: 8px;
+    height: 14px;
+    border: solid white;
+    border-width: 0px 4px 4px 0;
     transform: rotate(45deg);
 }
 
@@ -553,9 +580,8 @@ animation:background-rainbow .2s infinite;
 input[type=range] {
   -webkit-appearance: none;
   width: 100%;
-  margin-bottom: 10px;
-    box-sizing: border-box;
-    transition: background 1s ease;
+    margin-top: 2px;
+    margin-bottom: 10px;
 }
 input[type=range]:focus {
   outline: none;
@@ -578,6 +604,9 @@ input[type=range]::-webkit-slider-thumb {
 }
 input[type=range]:focus::-webkit-slider-runnable-track {
   background: orange;
+}
+.rangeDiv{
+    
 }
 
 

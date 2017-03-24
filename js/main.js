@@ -12,15 +12,19 @@ var pClasses = ["p1","p2","p3","p4","p5","p6","p7","p8"];
 var hClasses = ["h1","h2","h3","h4","h5","h6","h7","h8"];
 var fuckClasses = ["enlarge","shrink","skew","skew-left","perspective","perspective-right",
                   "flip","flip-up","blur","invert","baffle","rotate","rotate-right"];
+var safeFuckClasses = ["enlarge","shrink","skew","skew-left","perspective","perspective-right",
+                  "flip","flip-up","blur","invert","rotate","rotate-right"];
 var hoverClasses = ["rainbow","biggerize","skewize","dropshadowize","regular","strikethrough","background-rainbow","underline"];
 var alignClasses = ["inner-child-top","inner-child-bottom","inner-child-center"];
 var colors = [ "#00ff00", "#efecca", "#046380"
              , "#ff0000", "#d9cb9e", "#dc3522"
              , "#0000ff", "#ffe11a", "#1f8a70"
-             , "#666", "#2c3e50", "#e74c3c"
+             , "#666666", "#2c3e50", "#e74c3c"
              , "#000000", "#ffff9d", "#ff6138"
              , "#2c3e50", "#3498db", "#e74c3c"
              , "#000000", "#fff0a5", "#468966"
+             , "#000000", "#666666", "#888888"
+             , "#FFFFFF", "#2b015f", "#4700a0"
              ];
 var isRndAlign = true, isCentered = false, isAllRandom = false, isVariableWidth = false, isEffects = false;
 var isFuckedPaddings = false, isFuckedMargins = false, isBoxBg = false, isHovers = false;
@@ -48,7 +52,7 @@ function isCollided($div1, $div2) {
 }
 function setProperties() {
     
-    marginValue = Math.random()*120;
+    $('.inner').children().removeClass().addClass('inner-child');
     
     randomizeStyle();
     brutalize();
@@ -96,7 +100,8 @@ function randomizeStyle(){
     
     pClass = pClasses[~~(Math.random()*pClasses.length)];
     hClass = hClasses[~~(Math.random()*hClasses.length)];
-    var colorRow = Math.floor(Math.random()*(colors.length/3));
+    var colorRow = getRndInteger(0,colors.length/3);
+    
     
     $('.outer').removeAttr( 'style' );
     $('.inner').removeAttr( 'style' );
@@ -104,26 +109,35 @@ function randomizeStyle(){
     $('.inner-child').children().removeAttr( 'style' );
     $('body').removeAttr( 'style' );
     $('a').removeAttr( 'style' );
+    $('p').removeAttr( 'style' );
     
-    $('.inner').children().removeClass().addClass('inner-child');
+    
     $('.inner p').removeClass().addClass(pClass);
     $('.inner h1').removeClass().addClass(hClass);
     $("a").removeClass();
     
-    if(isEffects){
-         $(".inner-child").each( function(){
-            if(getRndInteger(0,2)==1){
-                $(this).addClass(getRndArrayVal(fuckClasses));
-            } 
-         });
-    }
+    $(".inner-child").css("color",getColor(colorRow,0));
+    
+    if (isEffects) {
+    $(".inner-child").each(function () {
+            if (!$(this).next().is("a") || !$(this).next().is("img")) {
+                if (getRndInteger(0, 2) == 1) {
+                    $(this).addClass(getRndArrayVal(fuckClasses));
+                }
+            }
+        
+    });
+}
     
     if(isBgColor){
-        //$('.inner').children().css("background-color",getColor(colorRow,1));
-        //$('body').css("background-color",getColor(colorRow,1));
-        $('.outer').css(
-            "background","linear-gradient(to bottom,"+getColor(colorRow,1)+","+getColor(colorRow,2)+")"
-        );
+        if(getRndInteger(0,2)==1){
+            $('.outer').css("background",getColor(colorRow,1));
+         } else {
+             $('.outer').css(
+                 "background", "linear-gradient(to bottom," + getColor(colorRow, 1) + "," + getColor(colorRow, 2) + ")"
+             );
+         }
+        
     }
     if(isBoxBg){
         $(".inner-child").css("background-color",getColor(colorRow,1));
@@ -132,8 +146,8 @@ function randomizeStyle(){
         $("a").addClass(getRndArrayVal(hoverClasses));
         
         if(getRndInteger(0,2)==1){
-            $("a").css("color",getColor(colorRow,1));
-            $("a").css("background-color",getColor(colorRow,2));
+            $("a").css("color",getColor(colorRow,0));
+            $("a").css("background-color",getColor(colorRow,1));
             $("a").css("padding","2px");
         }
     }
@@ -163,18 +177,10 @@ $(document).ready(function() {
     
     $("#savezip").click(function(){
         var zip = new JSZip();
-
-        // find every checked item
-//        $(".inner").find(":checked").each(function () {
-//            var $this = $(this);
-//            var url = $this.data("url");
-//            var filename = url.replace(/.*\//g, "");
-//            zip.file(filename, urlToPromise(url), {binary:true});
-//        });
         
         var docHead = '<!doctype html><html class="no-js" lang=""><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>'+title+'</title><meta name="description" content=""><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="css/normalize.min.css"><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/core/butch.css"><script src="js/vendor/modernizr-2.8.3.min.js"></script></head><body style=" background: '+$("body").css("background")+'">';
         
-        var docBody = $('.outer').clone().wrap('<div>').parent().html();
+        var docBody = $('.outer').clone().wrap('<div class="outer">').parent().html();
 
         
         var docFooter = '<script src="js/vendor/jquery-3.1.1.min.js"></script><script>$(document).ready(function(){brutalize();});</script></body></html>';
@@ -205,7 +211,9 @@ $(document).ready(function() {
     });
     
     $( "#variableWidthCheck" ).click(function() {
-      $("#colWidth").toggleClass( "hidden", 1000, "easeOutSine" );
+      $( ".rangeDiv" ).slideToggle( "slow", function() {
+        // Animation complete.
+      });
     });
 });
 
