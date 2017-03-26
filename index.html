@@ -1,74 +1,126 @@
 <!doctype html>
 <html class="no-js" lang="">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="css/normalize.min.css">
-        <link rel="stylesheet" href="css/style.css">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/core/core.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/themes/default.css">
+    <link rel="stylesheet" href="css/medium-editor.css">
+    <link rel="stylesheet" href="js/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin.min.css">
         
-        <link rel="stylesheet" href="css/themes/default.css">
-        <link rel="stylesheet" href="css/medium-editor.css">
-        
-        <link rel="stylesheet" href="js/medium-editor/dist/css/medium-editor.min.css">
-        <link rel="stylesheet" href="js/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin.min.css">
-        
-        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-    </head>
-    <body>
-        <div class="indexContainer">
-            <img src="img/constructionthumb.gif" height="28px">
-            <img src="img/constructionbanner.gif">
-            <img src="img/constructionthumb.gif" height="28px">
-            <div class="editable"></div>
-            <button class="p3" id="submit">Create a webpage</button>
+    
+    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="js/vendor/FileSaver.min.js"></script>
+    <script src="js/vendor/jszip.min.js"></script>
+    <script src="js/vendor/jszip-utils.js"></script>
+    <script src="js/vendor/jquery-3.1.1.min.js"></script>
+    <script src="js/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
+</head>
+
+<body>
+    <div id="container">
+        <div class="sidebar closed">
+            <div class="hamburgy closed"></div>
+            <div id="sidebarlogo">UNDER CONSTRUCTION</div>
+            <div class="control-group">
+                <div class="inner-control-group">
+                    <h3>Alignment</h3>
+                    <label class="control control--checkbox">Random row alignment
+                        <input type="checkbox" id="rndAlignCheck">
+                        <div class="control__indicator"></div>
+                    </label>
+                    <label class="control control--checkbox">Variable Column Width ▼
+                        <input type="checkbox" id="variableWidthCheck" />
+                        <div class="control__indicator"></div>
+                    </label>
+                    <div class="rangeDiv" style="display: none">
+                        <input type="range" id="colWidth" min="1" max="5" step="1"> </div>
+                    <label class="control control--checkbox">Center Page
+                        <input type="checkbox" id="centerCheck" />
+                        <div class="control__indicator"></div>
+                    </label>
+                </div>
+                <div class="inner-control-group">
+                    <h3>Color</h3>
+                    <label class="control control--checkbox">Random Background Coloring
+                        <input type="checkbox" id="bgColorCheck" />
+                        <div class="control__indicator"></div>
+                    </label>
+                    <label class="control control--checkbox">Box backgrounds
+                        <input type="checkbox" id="boxBgCheck" />
+                        <div class="control__indicator"></div>
+                    </label>
+                </div>
+                <div class="inner-control-group">
+                    <h3>Brutalize</h3>
+                    <label class="control control--checkbox">Margin fucker
+                        <input type="checkbox" id="marginsCheck" />
+                        <div class="control__indicator"></div>
+                    </label>
+                    <label class="control control--checkbox">Padding fucker
+                        <input type="checkbox" id="paddingsCheck" />
+                        <div class="control__indicator"></div>
+                    </label>
+                    <label class="control control--checkbox">Style fucker
+                        <input type="checkbox" id="randomCheck" />
+                        <div class="control__indicator"></div>
+                    </label>
+                    <label class="control control--checkbox">Effect fucker
+                        <input type="checkbox" id="effectCheck" />
+                        <div class="control__indicator"></div>
+                    </label>
+                    <label class="control control--checkbox">Link fucker
+                        <input type="checkbox" id="hoverCheck" />
+                        <div class="control__indicator"></div>
+                    </label>
+                </div>
+            </div>
+            <div class="buttongroup inner-child-center">
+                <button class="background-rainbow" id="randombutton">BRUTALIZE</button><br/>
+                <a id="showedit">Re-edit Content</a>
+                <a id="savezip">Save Archive</a>
+            </div>
         </div>
-        
-        
-        
-        
-        
-        <script id="test" src="js/vendor/jquery-3.1.1.min.js"></script>
-        <script src="js/medium-editor.js"></script>
-        <script src="js/handlebars/dist/handlebars.runtime.min.js"></script>
-        <script src="js/jquery-sortable/source/js/jquery-sortable-min.js"></script>
-        <script src="js/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
-        <script src="js/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
-        <script src="js/blueimp-file-upload/js/jquery.fileupload.js"></script>
-        <script src="js/medium-editor-insert-plugin/dist/js/medium-editor-insert-plugin.min.js"></script>
-        
-        <script>
-            var editor = new MediumEditor('.editable',{
-                toolbar: {
-                    buttons: ['bold', 'italic', 'underline', 'anchor', 'h1']
-                }
-            });
-            
-            function setSessionVal() {
-                
-                var allContents = editor.serialize();
-                var elContent = allContents["element-0"].value;
-                sessionStorage.formVal = elContent;
-                window.location.href = "result.html";
-            }
-            
-            $(function () {
-                $('.editable').mediumInsert({
-                    editor: editor,
-                    addons: {
-                        images: {
-                            captions: false
-                        }
-                    }
-                });
-                $( "#submit" ).click(function( event ) {
-                  setSessionVal();
-                });
-            });
-        </script>
-    </body>
+        <div class="window">
+            <div class="editorOverlay">
+                <h2>UNDER CONSTRUCTION</h2>
+                <div class="editableContainer">
+                    <div class="editable">
+                        <h1>Hey, how's my lorem?</h1>
+                        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+
+                        <p><b>Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC</b></p>
+
+                        <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p>
+                    </div>
+                </div>
+                <div class="buttongroup inner-child-center">
+                    <button id="submit">Create a webpage</button>
+                </div>
+            </div>
+            <div class="window-content">
+                <div class="outer">
+                    <div class="inner"> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/medium-editor.js"></script>
+    <script src="js/handlebars/dist/handlebars.runtime.min.js"></script>
+    <script src="js/jquery-sortable/source/js/jquery-sortable-min.js"></script>
+    <script src="js/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
+    <script src="js/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
+    <script src="js/blueimp-file-upload/js/jquery.fileupload.js"></script>
+    <script src="js/medium-editor-insert-plugin/dist/js/medium-editor-insert-plugin.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/brutalist.js"></script>
+    <script src="js/start.brutalizing.js"></script>
+</body>
+
 </html>

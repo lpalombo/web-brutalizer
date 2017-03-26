@@ -5,13 +5,13 @@
 // Add some css animations!
 // Gotta make it so that you can tweak it post randomization, so you dont gotta do it all over again
 
-$('.inner').html(sessionStorage.formVal);
-$('.inner').children().wrap("<div class='inner-child'></div>");
+//$('.inner').html(sessionStorage.formVal);
+//$('.inner').children().wrap("<div class='inner-child'></div>");
 
 var pClasses = ["p1","p2","p3","p4","p5","p6","p7","p8"];
 var hClasses = ["h1","h2","h3","h4","h5","h6","h7","h8"];
 var fuckClasses = ["enlarge","shrink","skew","skew-left","perspective","perspective-right",
-                  "flip","flip-up","blur","invert","baffle","rotate","rotate-right"];
+                  "flip","flip-up","blur","invert","rotate","rotate-right"];
 var safeFuckClasses = ["enlarge","shrink","skew","skew-left","perspective","perspective-right",
                   "flip","flip-up","blur","invert","rotate","rotate-right"];
 var hoverClasses = ["rainbow","biggerize","skewize","dropshadowize","regular","strikethrough","background-rainbow","underline"];
@@ -167,6 +167,12 @@ function randomizeStyle(){
     }
 }
 
+var editor = new MediumEditor('.editable', {
+    toolbar: {
+        buttons: ['bold', 'italic', 'underline', 'anchor', 'h1']
+    }
+});
+
 $(document).ready(function() {
     
     setProperties();
@@ -174,6 +180,29 @@ $(document).ready(function() {
     $( "#randombutton" ).click(function() {
         setProperties();
     });
+    $('.hamburgy').click(function () {
+        $('.sidebar').toggleClass('closed');
+        $('.hamburgy').toggleClass('closed');
+    });
+
+    /* Then push them back */
+    $('#sidebarlogo').click(function () {
+        $('.sidebar').toggleClass('closed');
+        $('.hamburgy').toggleClass('closed');
+    });
+    $('#showedit').click(function () {
+        $('.editorOverlay').toggleClass('closed');
+    });
+    $('#submit').click(function () {
+        var allContents = editor.serialize();
+        var elContent = allContents["element-0"].value;
+        $('.inner').html(elContent);
+        $('.inner').children().wrap("<div class='inner-child'></div>");
+        $('.editorOverlay').toggleClass('closed');
+        $('.sidebar').removeClass('closed');
+        $('.hamburgy').removeClass('closed');
+    });
+
     
     $("#savezip").click(function(){
         var zip = new JSZip();
@@ -214,6 +243,14 @@ $(document).ready(function() {
       $( ".rangeDiv" ).slideToggle( "slow", function() {
         // Animation complete.
       });
+    });
+    $('.editable').mediumInsert({
+        editor: editor,
+        addons: {
+            images: {
+                captions: false
+            }
+        }
     });
 });
 

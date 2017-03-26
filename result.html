@@ -9,7 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/core/core.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="js/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin-frontend.min.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/themes/default.css">
+    <link rel="stylesheet" href="css/medium-editor.css">
+    <link rel="stylesheet" href="js/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin.min.css">
+        
+    
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     <script src="js/vendor/FileSaver.min.js"></script>
     <script src="js/vendor/jszip.min.js"></script>
@@ -21,6 +26,10 @@
 <body>
     <div id="container">
         <div class="sidebar">
+            <div class="hamburgy"></div>
+            <div class="buttongroup inner-child-center">
+                <button class="background-rainbow" id="closebutton">close</button>
+            </div>
             <div class="buttongroup inner-child-center">
                 <button class="background-rainbow" id="randombutton">RANDOMIZE</button>
             </div>
@@ -78,10 +87,16 @@
                 </div>
             </div>
             <div class="buttongroup inner-child-center">
-                <button id="savezip">SAVE TO ARCHIVE</button>
+                <button id="savezip">SAVE TO ARCHIVE</button><br/>
+                <a id="showedit">Re-edit Content</a>
             </div>
         </div>
         <div class="window">
+            <div class="testeditor">
+                <h1>UNDER CONSTRUCTION</h1>
+                <div class="editable"></div>
+                <button id="submit">Create a webpage</button>
+            </div>
             <div class="window-content">
                 <div class="outer">
                     <div class="inner"> </div>
@@ -89,6 +104,13 @@
             </div>
         </div>
     </div>
+    <script src="js/medium-editor.js"></script>
+    <script src="js/handlebars/dist/handlebars.runtime.min.js"></script>
+    <script src="js/jquery-sortable/source/js/jquery-sortable-min.js"></script>
+    <script src="js/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
+    <script src="js/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
+    <script src="js/blueimp-file-upload/js/jquery.fileupload.js"></script>
+    <script src="js/medium-editor-insert-plugin/dist/js/medium-editor-insert-plugin.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/brutalist.js"></script>
     <script src="js/start.brutalizing.js"></script>

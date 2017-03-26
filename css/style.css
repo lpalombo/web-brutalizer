@@ -11,7 +11,9 @@ body {
     font-family: 'Source Sans Pro', 'Arial', sans-serif;;
     font-weight: bold;
 }
-
+body, a:hover {
+    cursor: url(http://cur.cursors-4u.net/symbols/sym-1/sym46.cur), progress !important;
+}
 
 /* ==========================================================================
    Titles
@@ -134,25 +136,7 @@ body {
    Paragraph
    ========================================================================== */
 
-.editable {
-    margin: 10px 50px;
-    font-family: "Palatino Linotype", "Book Antiqua", "Palatino", serif;
-}
 
-.editable h1 {
-    font-size: 54px;
-}
-
-.editable p {
-    font-size: 20px;
-    line-height: 26px;
-}
-
-.indexContainer {
-    width: 70%;
-    margin: 0 auto;
-    text-align: center;
-}
 
 #container {
     display: flex;
@@ -161,19 +145,56 @@ body {
 
 .sidebar {
     display: flex;
+    position: relative;
     flex-flow: column; 
     width: 20em;
     min-height: 100vh;
+    margin-left: 0;
     background-color: #F9F562;
     box-sizing: border-box;
-    padding: 20px;
-    margin-left: 0em;
+    
     transition: margin-left 0.5s ease;
 }
-
-.sidebar:hover {
-    margin-left: 0em;
+.sidebar.closed{
+    margin-left: -18.5em;
 }
+.hamburgy{
+    position: absolute;
+    right: -15px;
+    top: -25px;
+    width: 25px;
+    height: 20px;
+    border-top: 4px solid;
+    border-bottom: 4px solid;
+    z-index: 9999999;
+    transition: top, .5s ease;
+    cursor: pointer;
+}
+.hamburgy:before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 0px;
+    width: 100%;
+    border-top: 4px solid black;
+}
+
+.hamburgy.closed{
+    top: 15px;
+}
+#sidebarlogo{
+    height: 100px;
+    background:repeating-linear-gradient(-60deg,yellow ,yellow 1em ,transparent 1em,transparent 1.5em );
+    background-size: 6.9em 100%;
+    animation: caution 2s linear infinite;
+    font-size: 2.5em;
+    line-height: .9em;
+    font-weight: 900;
+}
+#sidebarlogo:hover{
+    background:repeating-linear-gradient(-60deg, , 1em ,transparent 1em,transparent 1.5em );
+}
+
 h3{
     font-size: 12px;
     color: #3251A2;
@@ -185,7 +206,9 @@ h3{
 
 .window {
     flex: 1 100%;
+    width: calc(100vw - 20em);
     display: flex;
+    position: relative;
     flex-direction: column;
 }
 
@@ -231,7 +254,7 @@ h3{
 /* END GRID SHIT */
 
 .buttongroup{
-
+    
 }
 
 .buttongroup button {
@@ -242,7 +265,6 @@ h3{
     background-color: rgba(0,0,0,0);
     min-width: 175px;
 }
-
 .buttongroup button:hover {
     background-color: orange;
 }
@@ -290,6 +312,81 @@ textarea {
     z-index: 999;
     border: 1px solid;
 }
+
+/* ==========================================================================
+   Editor
+   ========================================================================== */
+
+.editorOverlay{
+    position: absolute;
+    display: flex;
+    flex-flow: column;
+    height: 100vh;
+    left: 0; top: 0; right: 0;
+    background-color: #DDD;
+    transition: top .5s ease;
+    overflow-y: auto;
+    
+}
+.editorOverlay.closed{
+    top: -100vh;
+}
+
+.editorOverlay h2{
+    font-size: 140px;
+    line-height: 105px;
+    margin: 0;
+    font-weight: bolder;
+    background:repeating-linear-gradient(-60deg,yellow ,yellow 1em ,transparent 1em,transparent 1.5em );
+    background-size: 6.9em 100%;
+    animation: caution 10s linear infinite;
+    padding: 0 10%;
+}
+
+.editableContainer {
+    font-weight: 100;
+    
+    flex: 1;
+    background-color: white;
+    margin: 20px 10%;
+}
+.editable {
+    font-family: monospace;
+    margin: 0 70px;
+}
+
+.editable h1 {
+    position: relative;
+    font-size: 36px;
+    
+}
+.editable h1:after{
+    position: absolute;
+    content: 'HEADING';
+    font-size: 12px;
+    font-weight: 900;
+    color: #CCC;
+    top: -20px;
+    left: 0;
+}
+
+.editable p {
+    position: relative;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.editable p:after{
+     position: absolute;
+    content: 'PARAGRAPH';
+    font-size: 12px;
+    font-weight: 900;
+    color: #CCC;
+    top: -18px;
+    left: 0;
+}
+
+
 
 /* ==========================================================================
    Hovers
@@ -412,6 +509,7 @@ animation:background-rainbow .2s infinite;
 
 .control-group {
     flex: 1 100%;
+    padding: 20px;
 }
 .inner-control-group{
     
@@ -609,6 +707,10 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     
 }
 
+@keyframes caution{
+    0%{background-position:0 0}
+    100%{background-position:6.9em 0}
+}
 
 /* ==========================================================================
    Media Queries
