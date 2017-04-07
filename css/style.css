@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,900');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,900');
 
 html {
     color: #222;
@@ -7,8 +7,8 @@ html {
 }
 
 body {
-    min-height: 100%;
-    font-family: 'Source Sans Pro', 'Arial', sans-serif;;
+    font-family: 'Source Sans Pro', 'Arial', sans-serif;
+    margin: 0;
 }
 body, a:hover {
     cursor: url(http://cur.cursors-4u.net/symbols/sym-1/sym46.cur), progress !important;
@@ -17,121 +17,8 @@ body, a:hover {
 input, textarea, select, a, button { outline: none; }
 
 /* ==========================================================================
-   Titles
-   ========================================================================== */
-
-.p1 {
-    font-family: monospace;
-    font-size: 16px;
-    line-height: 28px;
-}
-
-.p2 {
-    font-family: "Helvetica", "Arial", sans-serif;
-    font-size: 16px;
-    line-height: 24px;
-}
-
-.p3 {
-    font-family: "Lucida Console", "Monaco", monospace;
-    font-size: 16px;
-    text-transform: uppercase;
-    line-height: 28px;
-}
-
-.p4 {
-    font-family: "Verdana", "Geneva", sans-serif;
-    font-size: 14px;
-    line-height: 22px;
-}
-
-.p5 {
-    font-family: "Palatino Linotype", "Book Antiqua", "Palatino", serif;
-    font-size: 18px;
-}
-
-.p6 {
-    font-family: "Helvetica", "Arial", sans-serif;
-    font-size: 20px;
-    line-height: 26px;
-}
-
-.p6 {
-    font-family: "Helvetica", "Arial", sans-serif;
-    font-size: 20px;
-    line-height: 26px;
-}
-
-.p7 {
-    font-family: "Palatino Linotype", "Book Antiqua", "Palatino", serif;
-    font-size: 20px;
-    line-height: 26px;
-}
-
-.p8 {
-    font-family: "Lucida Console", "Monaco", monospace;
-    font-size: 22px;
-    line-height: 32px;
-}
-
-
-/* ==========================================================================
-   Header
-   ========================================================================== */
-
-.h1 {
-    font-family: monospace;
-    font-size: 42px;
-}
-
-.h2 {
-    font-family: "Helvetica", "Arial", sans-serif;
-    font-size: 32px;
-}
-
-.h3 {
-    font-family: "Lucida Console", "Monaco", monospace;
-    font-size: 62px;
-    text-transform: uppercase;
-}
-
-.h4 {
-    font-family: "Verdana", "Geneva", sans-serif;
-    font-size: 72px;
-    text-transform: uppercase;
-}
-
-.h5 {
-    font-family: "Palatino Linotype", "Book Antiqua", "Palatino", serif;
-    font-size: 52px;
-}
-
-.h6 {
-    font-family: "Helvetica", "Arial", sans-serif;
-    font-size: 62px;
-}
-
-.h6 {
-    font-family: "Helvetica", "Arial", sans-serif;
-    font-size: 44px;
-}
-
-.h7 {
-    font-family: "Palatino Linotype", "Book Antiqua", "Palatino", serif;
-    font-size: 62px;
-}
-
-.h8 {
-    font-family: "Lucida Console", "Monaco", monospace;
-    font-size: 86px;
-}
-
-
-/* ==========================================================================
    Paragraph
    ========================================================================== */
-
-
 
 #container {
     display: flex;
@@ -154,22 +41,28 @@ input, textarea, select, a, button { outline: none; }
 }
 
 .outer {
+/*    min-height: 100vh;*/
     min-height: -webkit-min-content;
+    height: 100%;
     display: flex;
     flex: 1;
 }
 
 /* GRID SHIT */
 
+.flex{
+    display: flex;
+}
+
 .inner{
     flex: 1;
-    display: flex;
     flex-flow: row wrap;
 }
 .inner-child{
-    flex: 0 0 100%;
+    
     box-sizing: border-box;
     padding: 10px;
+    flex: 0 0 100%;
 }
 
 .inner-child-top {
@@ -207,7 +100,7 @@ input, textarea, select, a, button { outline: none; }
     position: absolute;
     right: -35px;
     top: 0px;
-    z-index: 9999;
+    z-index: 500;
     transform: scale(.8);
 }
 
@@ -271,7 +164,7 @@ input, textarea, select, a, button { outline: none; }
     background-color: #DDD;
     transition: top .5s ease;
     overflow-y: auto;
-    z-index: 99999;
+    z-index: 999;
 }
 .editorOverlay.closed{
     top: -100vh;
@@ -279,9 +172,9 @@ input, textarea, select, a, button { outline: none; }
 
 .editorOverlay h2{
     font-size: 140px;
-    line-height: 105px;
+    line-height: 115px;
     margin: 0;
-    font-weight: bolder;
+    font-weight: 700;
     color: black;
     background:repeating-linear-gradient(-60deg,yellow ,yellow 1em ,transparent 1em,transparent 1.5em );
     background-size: 6.9em 100%;
@@ -309,7 +202,7 @@ input, textarea, select, a, button { outline: none; }
 .editable p {
     margin: 30px 0;
 }
-.editable p,.editable li{
+.editable p,.editable li,.editable ul,.editable ol{
     position: relative;
     font-size: 20px;
     line-height: 24px;
@@ -460,6 +353,7 @@ input, textarea, select, a, button { outline: none; }
 .aboutOverlay p{
     font-size: 128px;
     line-height: 120px;
+    margin: 40px 0;
     font-weight: bolder;
 }
 
@@ -504,6 +398,9 @@ input, textarea, select, a, button { outline: none; }
 
 /* https://codepen.io/beben-koben/pen/gfuvc */
 
+.rainbow-slow:hover {
+animation:rainbow .8s infinite;
+}
 .rainbow:hover {
 animation:rainbow .2s infinite;
 }
@@ -586,17 +483,13 @@ animation:background-rainbow .2s infinite;
     flex: 1 100%;
     padding: 20px;
 }
-.inner-control-group{
-    
-}
-
 
 .control {
     display: block;
     position: relative;
     padding-left: 30px;
     padding-bottom: 10px;
-    padding-top: 8px;
+    padding-top: 10px;
     border-top: 1px solid black;
     cursor: pointer;
     font-size: 14px;
@@ -753,27 +646,28 @@ animation:background-rainbow .2s infinite;
 input[type=range] {
   -webkit-appearance: none;
   width: 100%;
-    margin-top: 2px;
-    margin-bottom: 10px;
+    margin-top: 4px;
+    margin-bottom: 14px;
 }
 input[type=range]:focus {
   outline: none;
 }
 input[type=range]::-webkit-slider-runnable-track {
   width: 100%;
-  height: 25px;
+  height: 12px;
   cursor: pointer;
-  background: yellow;
-  border: 0.1px solid #000000;
+  background: #EDD600;
+  border: 0px solid #000000;
 }
 input[type=range]::-webkit-slider-thumb {
-  border: 2px solid #000000;
-  height: 28px;
+  border: 3px solid #000000;
+  height: 22px;
   width: 22px;
-  background: #ffff00;
+  background: #F9F562;
   cursor: pointer;
   -webkit-appearance: none;
-    margin-top: -3px;
+    margin-top: -6px;
+    border-radius: 22px;
 }
 input[type=range]:focus::-webkit-slider-runnable-track {
   background: orange;

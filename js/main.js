@@ -8,8 +8,7 @@
 //$('.inner').html(sessionStorage.formVal);
 //$('.inner').children().wrap("<div class='inner-child'></div>");
 
-var pClasses = ["p1","p2","p3","p4","p5","p6","p7","p8"];
-var hClasses = ["h1","h2","h3","h4","h5","h6","h7","h8"];
+var fontClasses = ["arial-text","arial-black-text","comic-sans-text","tahoma-text","helvetica-text","impact-text","verdana-text","courier-new-text","lucida-text","georgia-text","times-text","palatino-text"];
 var fuckClasses = ["enlarge","shrink","skew","skew-left","perspective","perspective-right",
                   "flip","flip-up","blur","invert","rotate","rotate-right"];
 var safeFuckClasses = ["enlarge","shrink","skew","skew-left","perspective","perspective-right",
@@ -28,6 +27,7 @@ var colors = [ "#00ff00", "#efecca", "#046380"
              ];
 var isRndAlign = true, isCentered = false, isAllRandom = false, isVariableWidth = false, isEffects = false;
 var isFuckedPaddings = false, isFuckedMargins = false, isBoxBg = false, isHovers = false;
+var isRndPSize = false, isRndHSize = false, isRndFont = false, isRndFontColor = false;
 var isBgColor = false;
 var marginValue = 0;
 var topValue, leftValue;
@@ -56,6 +56,10 @@ function setProperties() {
     
     randomizeStyle();
     brutalize();
+    
+    if(isVariableWidth || isRndAlign){
+        $('.inner').addClass('flex');
+    }
     
     if(isRndAlign){
         $('.inner').children().each(function(){
@@ -87,8 +91,7 @@ function setProperties() {
     }
 }
 
-function randomizeStyle(){
-    
+function checkboxCheck(){
     isRndAlign = $('#rndAlignCheck').is(":checked");
     isCentered = $('#centerCheck').is(":checked");
     isAllRandom = $('#randomCheck').is(":checked");
@@ -99,9 +102,16 @@ function randomizeStyle(){
     isVariableWidth = $('#variableWidthCheck').is(":checked");
     isEffects = $('#effectCheck').is(":checked");
     isHovers = $('#hoverCheck').is(":checked");
+    isRndFont = $('#rndFontCheck').is(":checked");
+    isRndPSize = $('#rndPSizeCheck').is(":checked");
+    isRndHSize = $('#rndHSizeCheck').is(":checked");
+    isRndFontColor = $('#rndFontColorCheck').is(":checked");
+}
+
+function randomizeStyle(){
     
-    pClass = pClasses[~~(Math.random()*pClasses.length)];
-    hClass = hClasses[~~(Math.random()*hClasses.length)];
+    checkboxCheck();
+    
     var colorRow = getRndInteger(0,colors.length/3);
     
     
@@ -113,13 +123,37 @@ function randomizeStyle(){
     $('a').removeAttr( 'style' );
     $('p').removeAttr( 'style' );
     
-    
-    $('.inner p').removeClass().addClass(pClass);
-    $('.inner ul').removeClass().addClass(pClass);
-    $('.inner h1').removeClass().addClass(hClass);
+    $(".inner").removeClass('flex');
+    $('.inner p').removeClass();
+    $('.inner ul').removeClass();
+    $('.inner ol').removeClass();
+    $('.inner h1').removeClass();
     $(".inner a").removeClass();
     
-    $(".inner-child").css("color",getColor(colorRow,0));
+    
+    
+    if(isRndFontColor){
+        $(".inner-child").css("color",getColor(colorRow,0));
+    }
+    
+    if(isRndFont){
+        var rndFontClass = getRndArrayVal(fontClasses);
+        $(".inner p").addClass(rndFontClass);
+        $(".inner ul").addClass(rndFontClass);
+        $(".inner ol").addClass(rndFontClass);
+        $(".inner h1").addClass(rndFontClass);
+    }
+    
+    if(isRndHSize){
+        $(".inner h1").css('font-size',getRndInteger(16,180)+"px");
+    }
+    
+    if(isRndPSize){
+        var tempTextSize = getRndInteger(10,48);
+        $(".inner p").css('font-size',tempTextSize+"px");
+        $(".inner ul").css('font-size',tempTextSize+"px");
+        $(".inner ol").css('font-size',tempTextSize+"px");
+    }
     
     if (isEffects) {
     $(".inner-child").each(function () {
@@ -159,9 +193,7 @@ function randomizeStyle(){
         $('.outer').css("background",colors[getRndInteger(0,colors.length)]);
         
         $('.inner-child').children().each(function(){
-            
-            $(this).removeClass().addClass(pClasses[getRndInteger(0,pClasses.length)]);
-            
+
             $(this).css("color",colors[getRndInteger(0,colors.length)]);
             if(getRndInteger(0,3) > 2){
                 $(this).css("background-color",colors[Math.floor(Math.random()*colors.length)]);

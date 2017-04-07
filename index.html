@@ -37,18 +37,18 @@
                         </figure>
                     </div>
 
-                    <h1>Become a part of the hottest trend in web design today in just a few clicks.</h1>
+                    <h1>Brutalist web design for the rest of us.</h1>
 
-                    <p>Everyone knows coding isn’t easy. What if all you really want to do is put some shit on a webpage and make it look different from everything else without all the HTML/CSS stuff? We’ve got you my friend, <i>Under Construction</i> will take care of all of disgusting needs.</p>
+                    <p>Today's websites are too boring, too unoriginal, and weirdly optimistic. Join the movement of designers that have decided to do the exact opposite on the internet, creating wild and original user-UNfriendly experiences, using harsh typography and colours, just like the good old days of web design. </p>
+                    
+                    <p>In the past, creating these sorts of websites was a simple task, but with the standards of web design constantly changing it’s difficult to keep up. What if you could provide all the content you needed to a service and have it make a website for you? <i>Under Construction</i> is your answer.</p>
 
-                    <p><i>Under Construction</i> is just like if:</p>
+                    <p>Use <i>Under Construction</i> to create “unique” looking:</p>
 
                     <ul>
-                        <li>Squarespace took acid</li>
-                        <li>Wix got diarrhea</li>
-                        <li>Weebly had a nervous breakdown</li>
-                        <li>Dreamweaver had a nightmare</li>
-                        <li>we brought back Geocities</li>
+                        <li>Portfolios</li>
+                        <li>Event pages</li>
+                        <li>Product demonstrations</li>
                     </ul>
 
                     <p>Type here and give it a whirl for yourself!</p>
@@ -71,8 +71,40 @@
             </button>
             <div class="control-group">
                 <div class="inner-control-group">
-                    <h3>Alignment</h3>
-                    <label class="control control--checkbox">Random row alignment
+                    <h3>Randomize text</h3>
+                    <label class="control control--checkbox">Font family
+                        <input type="checkbox" id="rndFontCheck" checked>
+                        <div class="control__indicator"></div>
+                    </label>
+                    
+                    <label class="control control--checkbox">Size - Heading
+                        <input type="checkbox" id="rndHSizeCheck" checked>
+                        <div class="control__indicator"></div>
+                    </label>
+                    <label class="control control--checkbox">Size - Paragraph
+                        <input type="checkbox" id="rndPSizeCheck" checked>
+                        <div class="control__indicator"></div>
+                    </label>
+                    
+                </div>
+                <div class="inner-control-group">
+                    <h3>Randomize Colour</h3>
+                    <label class="control control--checkbox">Text
+                        <input type="checkbox" id="rndFontColorCheck" checked>
+                        <div class="control__indicator"></div>
+                    </label>
+                    <label class="control control--checkbox">Background
+                        <input type="checkbox" id="bgColorCheck" checked/>
+                        <div class="control__indicator"></div>
+                    </label>
+                    <label class="control control--checkbox">Individual Element Background
+                        <input type="checkbox" id="boxBgCheck" />
+                        <div class="control__indicator"></div>
+                    </label>
+                </div>
+                <div class="inner-control-group">
+                    <h3>Randomize Alignment</h3>
+                    <label class="control control--checkbox">Top/Center/Bottom
                         <input type="checkbox" id="rndAlignCheck">
                         <div class="control__indicator"></div>
                     </label>
@@ -81,43 +113,29 @@
                         <div class="control__indicator"></div>
                     </label>
                     <div class="rangeDiv" style="display: none">
-                        <input type="range" id="colWidth" min="1" max="5" step="1"> </div>
+                        <input type="range" id="colWidth" min="1" max="5" step="1"> 
+                    </div>
                     <label class="control control--checkbox">Center Page
-                        <input type="checkbox" id="centerCheck" />
+                        <input type="checkbox" id="centerCheck" checked/>
+                        <div class="control__indicator"></div>
+                    </label>
+                    <label class="control control--checkbox">Space Around Elements
+                        <input type="checkbox" id="marginsCheck" checked/>
+                        <div class="control__indicator"></div>
+                    </label>
+                    <label class="control control--checkbox">Space Inside Elements
+                        <input type="checkbox" id="paddingsCheck" checked/>
                         <div class="control__indicator"></div>
                     </label>
                 </div>
                 <div class="inner-control-group">
-                    <h3>Color</h3>
-                    <label class="control control--checkbox">Random Background Coloring
-                        <input type="checkbox" id="bgColorCheck" />
-                        <div class="control__indicator"></div>
-                    </label>
-                    <label class="control control--checkbox">Box backgrounds
-                        <input type="checkbox" id="boxBgCheck" />
-                        <div class="control__indicator"></div>
-                    </label>
-                </div>
-                <div class="inner-control-group">
-                    <h3>Brutalize</h3>
-                    <label class="control control--checkbox">Margin fucker
-                        <input type="checkbox" id="marginsCheck" />
-                        <div class="control__indicator"></div>
-                    </label>
-                    <label class="control control--checkbox">Padding fucker
-                        <input type="checkbox" id="paddingsCheck" />
-                        <div class="control__indicator"></div>
-                    </label>
-                    <label class="control control--checkbox">Style fucker
-                        <input type="checkbox" id="randomCheck" />
-                        <div class="control__indicator"></div>
-                    </label>
-                    <label class="control control--checkbox">Effect fucker
+                    <h3>Randomize Effects</h3>
+                    <label class="control control--checkbox">Distortion
                         <input type="checkbox" id="effectCheck" />
                         <div class="control__indicator"></div>
                     </label>
-                    <label class="control control--checkbox">Link fucker
-                        <input type="checkbox" id="hoverCheck" />
+                    <label class="control control--checkbox">Links
+                        <input type="checkbox" id="hoverCheck" checked/>
                         <div class="control__indicator"></div>
                     </label>
                 </div>
@@ -130,9 +148,9 @@
         </div>
         <div class="window">
             <div class="aboutOverlay closed">
-                <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                    </p>
+                <p class="rainbow-slow">Brutalist Websites</p>
+                <p class="rainbow-slow">In its ruggedness and lack of concern to look comfortable or easy, Brutalism can be seen as a reaction by a younger generation to the lightness, optimism, and frivolity of today's webdesign.</p>
+                <p class="rainbow-slow">-Pascal Deville</p>
                 <div class="aboutContainer">
                     
                     <div class="credits">
