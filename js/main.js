@@ -61,6 +61,8 @@ function setProperties() {
         $('.inner').children().each(function(){
             $(this).addClass(getRndArrayVal(alignClasses));
         });
+    } else {
+        $('.inner').children().addClass('inner-child-top');
     }
     
     if(isVariableWidth){
@@ -113,8 +115,9 @@ function randomizeStyle(){
     
     
     $('.inner p').removeClass().addClass(pClass);
+    $('.inner ul').removeClass().addClass(pClass);
     $('.inner h1').removeClass().addClass(hClass);
-    $("a").removeClass();
+    $(".inner a").removeClass();
     
     $(".inner-child").css("color",getColor(colorRow,0));
     
@@ -143,12 +146,12 @@ function randomizeStyle(){
         $(".inner-child").css("background-color",getColor(colorRow,1));
     }
     if(isHovers){
-        $("a").addClass(getRndArrayVal(hoverClasses));
+        $(".inner a").addClass(getRndArrayVal(hoverClasses));
         
         if(getRndInteger(0,2)==1){
-            $("a").css("color",getColor(colorRow,0));
-            $("a").css("background-color",getColor(colorRow,1));
-            $("a").css("padding","2px");
+            $(".inner a").css("color",getColor(colorRow,0));
+            $(".inner a").css("background-color",getColor(colorRow,1));
+            $(".inner a").css("padding","2px");
         }
     }
     
@@ -167,9 +170,14 @@ function randomizeStyle(){
     }
 }
 
+var autolist = new AutoList();
 var editor = new MediumEditor('.editable', {
+    buttonLabels: 'fontawesome',
+    extensions: {
+        'autolist': autolist
+    },
     toolbar: {
-        buttons: ['bold', 'italic', 'underline', 'anchor', 'h1']
+        buttons: ['bold', 'italic', 'underline', 'anchor', 'h1','unorderedlist','orderedlist']
     }
 });
 
@@ -180,9 +188,9 @@ $(document).ready(function() {
     $( "#randombutton" ).click(function() {
         setProperties();
     });
-    $('.hamburgy').click(function () {
+    $('.hamburger').click(function () {
         $('.sidebar').toggleClass('closed');
-        $('.hamburgy').toggleClass('closed');
+        $('.hamburgy').toggleClass('is-active');
     });
 
     /* Then push them back */
@@ -190,9 +198,18 @@ $(document).ready(function() {
         $('.sidebar').toggleClass('closed');
         $('.hamburgy').toggleClass('closed');
     });
-    $('#showedit').click(function () {
+    $('#editmode').click(function () {
         $('.editorOverlay').toggleClass('closed');
     });
+    $('#showabout').click(function () {
+        $('.aboutOverlay').toggleClass('closed');
+        $('.blasttext').toggleClass('closed');
+    });
+    $('.control-group').click(function () {
+        $('.aboutOverlay').removeClass('closed').addClass('closed');
+        $('.blasttext').removeClass('closed').addClass('closed');
+    });
+    
     $('#submit').click(function () {
         var allContents = editor.serialize();
         var elContent = allContents["element-0"].value;
