@@ -1,6 +1,6 @@
 {
   "name": "web-brutalizer",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Tool for creating brutalist websites",
   "main": "index.js",
   "scripts": {
@@ -15,8 +15,5 @@
   "bugs": {
     "url": "https://github.com/lpalombo/web-brutalizer/issues"
   },
-  "homepage": "https://github.com/lpalombo/web-brutalizer#readme",
-  "dependencies": {
-    "medium-editor-insert-plugin": "^2.4.0"
-  }
+  "homepage": "https://github.com/lpalombo/web-brutalizer#readme"
 }

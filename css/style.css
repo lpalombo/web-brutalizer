@@ -27,9 +27,8 @@ input, textarea, select, a, button { outline: none; }
 .window {
     flex: 1 100%;
     width: calc(100vw - 20em);
-    display: flex;
-    position: relative;
-    flex-direction: column;
+    overflow-y: auto;
+    height: 100vh;
 }
 
 .window-content{
@@ -41,11 +40,7 @@ input, textarea, select, a, button { outline: none; }
 }
 
 .outer {
-/*    min-height: 100vh;*/
-    min-height: -webkit-min-content;
-    height: 100%;
-    display: flex;
-    flex: 1;
+    /* min-height: 100vh; */
 }
 
 /* GRID SHIT */
@@ -54,12 +49,14 @@ input, textarea, select, a, button { outline: none; }
     display: flex;
 }
 
-.inner{
+.inner {
     flex: 1;
     flex-flow: row wrap;
+    min-height: 100vh;
+    padding-bottom: 80px;
 }
+
 .inner-child{
-    
     box-sizing: border-box;
     padding: 10px;
     flex: 0 0 100%;
@@ -85,20 +82,33 @@ input, textarea, select, a, button { outline: none; }
     display: flex;
     position: relative;
     flex-flow: column; 
-    width: 20em;
-    min-height: 100vh;
+    width: 320px;
     margin-left: 0;
     background-color: #F9F562;
     box-sizing: border-box;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
     
     transition: margin-left 0.5s ease;
+
 }
+
+.sidebar-container {
+    width: 100%;
+}
+
 .sidebar.closed{
-    margin-left: -18.5em;
+    margin-left: -260px;
 }
+
+.sidebar.closed .control-group {
+    margin-right: 30px;
+}
+
 .hamburgy{
     position: absolute;
-    right: -35px;
+    right: -10px;
     top: 0px;
     z-index: 500;
     transform: scale(.8);
@@ -482,6 +492,7 @@ animation:background-rainbow .2s infinite;
 .control-group {
     flex: 1 100%;
     padding: 20px;
+    transition: margin .3s;
 }
 
 .control {
